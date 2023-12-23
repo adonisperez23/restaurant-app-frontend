@@ -51,11 +51,18 @@
             <th class="text-center">
               Esta disponible?
             </th>
+            <th class="">
+
+            </th>
+            Filtrar productos por:
+            <select v-model="filtroSeleccionado">
+              <option v-for="categoria in ['Todos','Almuerzo','Bebida','Delivery','Racion']" >{{categoria}}</option>
+            </select>
           </tr>
         </thead>
         <tbody>
           <tr
-          v-for="(producto,index) in listaProductos"
+          v-for="(producto,index) in listaProductosFiltrada"
           :key="producto.id"
           >
           <td class="text-center">{{ producto.id}}</td>
@@ -137,7 +144,7 @@
 </template>
 
 <script setup lang="ts">
-import {ref,reactive} from 'vue'
+import {ref,reactive,computed} from 'vue'
 import axios from 'axios'
 import Aviso from '../../components/Aviso.vue'
 import BarraProgresoAviso from '../../components/BarraProgresoAviso.vue'
@@ -150,10 +157,30 @@ const cantidadProductos = listaProductos.value.length
 const cargandoLista =ref<boolean>(false)
 const listaVacia = ref<boolean>(false)
 const estaProductoRelacionado = ref<boolean>(false)
-
+const filtroSeleccionado = ref<string>('Todos')
 
 obtenerProductos()
 
+const listaProductosFiltrada = computed(()=>{
+  switch (filtroSeleccionado.value) {
+    case 'Almuerzo':
+      return listaProductos.value.filter(producto => producto.categoria === 'Almuerzo')
+      break;
+    case 'Bebida':
+      return listaProductos.value.filter(producto => producto.categoria === 'Bebida')
+      break;
+    case 'Racion':
+      return listaProductos.value.filter(producto => producto.categoria === 'Racion')
+      break;
+    case 'Delivery':
+      return listaProductos.value.filter(producto => producto.categoria === 'Delivery')
+      break;
+
+    default:
+      return listaProductos.value
+      break;
+  }
+})
 
 const propsAvisoEliminar:Modal = reactive({
   activarAviso: false,
@@ -233,4 +260,8 @@ function estaListaVacia(lista:Producto[]) {
 </script>
 
 <style scoped>
+select{
+  background-color: #f9cf57;
+  border-radius: 5px;
+}
 </style>

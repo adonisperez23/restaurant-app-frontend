@@ -13,8 +13,8 @@
           <v-icon
           color="red"
           size="100"
+          icon="mdi-server-network-off"
           >
-          mdi-server-image-album
          </v-icon>
         </v-sheet>
       </v-col>

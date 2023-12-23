@@ -129,6 +129,7 @@ const lista = useSesionUsuario()
 const alert = useEstadoAlerta()
 
 const router = useRouter()
+const usuarioSeleccionado = ref(0)
 
 const mostrarLista = ref<boolean>(false)
 
@@ -141,9 +142,9 @@ const colsMonto = computed<number>(()=>{
   }
 })
 
-onMounted(()=>{
-  console.log(lista.listaPedidos)
-})
+// onMounted(()=>{
+//   console.log(lista.listaPedidos)
+// })
 setTimeout(() => {
   mostrarLista.value = true
 }, 3000);
@@ -160,10 +161,20 @@ const montoTotal = computed<number>(()=>{
   return total
 })
 
+function seleccionarUsuario() {
+  if(lista.informacionUsuario.id === 0){
+    usuarioSeleccionado.value = import.meta.env.VITE_USUARIO_ANONIMO_ID
+    console.log('usuario anonimo', usuarioSeleccionado.value)
+  } else if(lista.informacionUsuario.id != undefined) {
+    usuarioSeleccionado.value = lista.informacionUsuario.id
+    console.log('usuario anonimo', usuarioSeleccionado.value)
+  }
+}
+
 function enviarPedido():void {
   axios.post(import.meta.env.VITE_API_GENERAR_FACTURA,
-    {usuario:lista.informacionUsuario.id,listaPedidos:lista.listaPedidos},
-    {headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+    {usuario:usuarioSeleccionado.value,listaPedidos:lista.listaPedidos})
+    // {headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
     .then((res:AxiosResponse)=>{
       // console.log("pedido",res)
       alert.gestionarRespuesta(res)
@@ -188,6 +199,8 @@ function armarNuevoPedido():void {
     lista.vaciarLista()
   }, 2000);
 }
+
+seleccionarUsuario()
 
 </script>
 

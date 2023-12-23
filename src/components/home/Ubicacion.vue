@@ -2,7 +2,7 @@
   <v-container class="mt-6 pt-6 mb-16 pb-16" >
     <v-row class="mt-6 pt-6 mb-16 pb-16" justify="center">
       <v-col :cols="cols">
-        <h2>¿Donde se encuentra nuestro local fisico?</h2>
+        <h2 class="px-3">¿Donde se encuentra nuestro local fisico?</h2>
         <p><strong>Direccion:</strong><br>
           Avenida orinoco, en frente de Agencias Unidas de Automoviles C.A
         </p>
@@ -46,5 +46,6 @@ function abrirGoogleMaps() {
 h2{
   background-color: #f3d595;
   display: inline;
+  border-radius: 5px;
 }
 </style>

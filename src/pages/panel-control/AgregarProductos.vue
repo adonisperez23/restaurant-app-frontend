@@ -19,7 +19,7 @@
       <v-select
         v-model="producto.categoria"
         label="Categoria"
-        :items="['Almuerzo','Contorno','Racion']"
+        :items="['Almuerzo','Contorno','Racion','Bebida','Delivery']"
       ></v-select>
       <v-text-field
         v-model="producto.descripcion"
@@ -98,11 +98,15 @@ const validatePrecio = [ (value:number) => {
   return "Valor del producto no puede ser negativo"
 },
 (value:number) => {
-  let decimal = (value + "").split(".")[1];
-  // console.log(decimal.length); // Output: 4
-  if(decimal.length <=2) return true
+  if(value.toString().includes('.')){
+    let decimal = value.toString()
+    let valor = decimal.split(".")[1];
+    console.log(valor) // Output: 4
+    if(valor.length <=2) return true
 
-  return "Valor del producto no puede tener mas de dos decimales"
+    return "Valor del producto no puede tener mas de dos decimales"
+  }
+  return true
 }]
 
 const validateProducto = [ (value:string) => {

@@ -18,8 +18,8 @@
         size="100"
         >
         mdi-server-food-variant-off
-      </v-icon>
-    </v-col>
+        </v-icon>
+      </v-col>
     </v-row>
     <v-row v-if="errorDeCarga" justify="center">
       <v-sheet color="#f9cf57" rounded>
@@ -38,16 +38,85 @@
         size="100"
         >
         mdi-server-network-off
-      </v-icon>
-    </v-col>
+        </v-icon>
+      </v-col>
     </v-row>
-    <v-row v-else justify="start">
-      <InfoMenu
-      v-for="(producto,index) in listaMenuFiltrada"
-      :key="producto.id"
-      v-bind="producto"/>
+    <v-row v-if="listaAlmuerzos.length > 0" justify="start">
+      <v-container>
+        <v-row justify="center">
+          <h2 class="px-5">
+            <v-icon
+            start
+            icon="mdi-pasta"
+            ></v-icon>
+            Almuerzos
+          </h2>
+        </v-row>
+        <v-row justify="start">
+          <InfoMenu
+          v-for="(producto,index) in listaAlmuerzos"
+          :key="producto.id"
+          v-bind="producto"/>
+        </v-row>
+      </v-container>
     </v-row>
-
+    <v-row v-if="listaBebidas.length > 0">
+      <v-container>
+        <v-row justify="center">
+          <h2 class="px-5">
+            <v-icon
+            start
+            icon="mdi-beer"
+            ></v-icon>
+            Bebidas
+          </h2>
+        </v-row>
+        <v-row justify="start">
+          <InfoMenu
+          v-for="(producto,index) in listaBebidas"
+          :key="producto.id"
+          v-bind="producto"/>
+        </v-row>
+      </v-container>
+    </v-row>
+    <v-row v-if="listaRaciones.length > 0" justify="start">
+      <v-container>
+        <v-row justify="center">
+          <h2 class="px-5">
+            <v-icon
+            start
+            icon="mdi-food-takeout-box-outline"
+            ></v-icon>
+            Extras
+          </h2>
+        </v-row>
+        <v-row justify="start">
+          <InfoMenu
+          v-for="(producto,index) in listaRaciones"
+          :key="producto.id"
+          v-bind="producto"/>
+        </v-row>
+      </v-container>
+    </v-row>
+    <v-row v-if="listaDelivery.length > 0">
+      <v-container>
+        <v-row justify="center">
+          <h2 class="px-5">
+            <v-icon
+            start
+            icon="mdi-truck-delivery"
+            ></v-icon>
+            Zonas delivery
+          </h2>
+        </v-row>
+        <v-row justify="start">
+          <InfoMenu
+          v-for="(producto,index) in listaDelivery"
+          :key="producto.id"
+          v-bind="producto"/>
+        </v-row>
+      </v-container>
+    </v-row>
   </v-container>
 </template>
 
@@ -61,26 +130,47 @@ import BarraProgresoAviso from '../components/BarraProgresoAviso.vue'
 // import listaProductos from '../assets/productos.json'
 
 
-let listaMenu = ref<Producto[]>([]) // Variable que almacena todos los productos de la base de datos
+let listaProductos = ref<Producto[]>([]) // Variable que almacena todos los productos de la base de datos
 const cargandoLista =ref<boolean>(true) //Variable que activa la BarraProgresoAviso cuando se hace la llamada a la api
 const listaVacia = ref<boolean>(false) // Controla el escrito cuando la lista de productos esta vacia o hay algun error en la llamada
 const errorDeCarga = ref<boolean>(false)
-let listaMenuFiltrada = reactive<Producto[]>([])  //Variable que almacena solo los productos con categoria Almuerzo y Raciones
+const listaAlmuerzos = reactive<Producto[]>([])  //Variable que almacena solo los productos con categoria Almuerzo
+const listaBebidas = reactive<Producto[]>([])  //Variable que almacena solo los productos con categoria Bebida
+const listaRaciones = reactive<Producto[]>([])  //Variable que almacena solo los productos con categoria Racion
+const listaDelivery = reactive<Producto[]>([])  //Variable que almacena solo los productos con categoria Delivery
 // const listaFiltrada = listaMenu.value.filter(producto => producto.categoria === "Almuerzo" || producto.categoria === "Raciones")
 
 ObtenerMenu()
 
-provide('listaMenu', listaMenu) // provee a todos los componentes hijos de la lista de productos luego de realizar la llamada a la api
+provide('listaMenu', listaProductos) // provee a todos los componentes hijos de la lista de productos luego de realizar la llamada a la api
 
 
 function ObtenerMenu():void {
   axios.get(import.meta.env.VITE_API_LISTA_DE_PRODUCTOS)
   .then((res:AxiosResponse)=>{
     setTimeout(() => {
-      listaMenu.value = res.data
-      listaMenuFiltrada = listaMenu.value.filter(producto => (producto.categoria === "Almuerzo" || producto.categoria === "Raciones") && producto.disponible === true)
-      estaListaVacia(listaMenu.value)
+      listaProductos.value = res.data
+      listaProductos.value.forEach(producto => {
+        if(producto.disponible){
+          switch (producto.categoria) {
+            case "Almuerzo":
+            listaAlmuerzos.push(producto)
+            break
+            case "Bebida":
+            listaBebidas.push(producto)
+            break
+            case "Racion":
+            listaRaciones.push(producto)
+            break
+            case "Delivery":
+            listaDelivery.push(producto)
+            break
+          }
+        }
+      })
+      estaListaVacia(listaProductos.value)
       cargandoLista.value = false
+      console.log("lista filtrada", listaAlmuerzos,listaBebidas,listaRaciones)
     }, 2000);
     // console.log("lista Productos", res.data.listaMenu)
   })
@@ -101,4 +191,8 @@ function estaListaVacia(lista:Producto[]) {
 </script>
 
 <style scoped>
+h2{
+  background-color: #f9cf57;
+  border-radius: 5px;
+}
 </style>

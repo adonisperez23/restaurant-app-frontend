@@ -19,15 +19,14 @@
           variant="Popout"
           title="Registrarse en nuestra APP-WEB"
           text="De manera facil y rapida podrá registrarse en nuestra APP-WEB ingresando; su nombre, correo electronico y
-          su numero de telefono podrá habilitar la funcionalidad especial de elegir cada plato. Ademas podra seleccionar los contornos que mas guste
-          y agregarlo a su lista de pedidos seleccionados.
+          su numero de telefono.
           "
           ></v-expansion-panel>
           <v-expansion-panel
           bg-color="#fcecd2"
           variant="Popout"
           title="Seleccionar plato y contornos"
-          text="Una vez registrado y autenticado en nuestra app observará un boton en cada plato con la palabra 'Pedir'.
+          text="En la app observará un boton en cada plato con la palabra 'Pedir'.
           Al darle click, se desplegará una ventana donde podrá visualizar todos los contornos disponibles y que posteriormente
           podra elegir 3 contornos de todos los que se encuentren disponibles para que complementen su plato de comida. Al tener su plato y sus contornos
           listos le podra dar al boton 'Agregar a la lista' para que su plato sea agregado a la lista de pedidos.

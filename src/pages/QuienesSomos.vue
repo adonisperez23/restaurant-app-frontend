@@ -1,7 +1,7 @@
 <template>
   <v-container class="font-poppins">
     <v-row justify="center">
-      <h1>Quienes Somos</h1>
+      <h1 class="px-5">Quienes Somos</h1>
     </v-row>
     <v-row>
       <v-col>
@@ -92,7 +92,7 @@
       </v-col>
       <v-col cols="12" align="center">
         <section>
-          <h3>Nuestro fabuloso equipo de trabajo</h3>
+          <h3 class="px-5">Nuestro fabuloso equipo de trabajo</h3>
           <v-img
           class="borde-imagen"
           src="/fotos/nuestroequipo.jpg"
@@ -116,6 +116,7 @@ h1,h3{
   display: inline;
   font-family: Steinfeld-demo;
   text-transform: uppercase;
+  border-radius: 5px;
 }
 section{
   margin-top: 5px;

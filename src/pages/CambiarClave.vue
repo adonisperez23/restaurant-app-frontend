@@ -73,7 +73,7 @@ const cambiarClave = ():void => {
       alert.gestionarRespuesta(res)
       console.log(res)
       setTimeout(() => {
-        router.push({name:'Autenticar usuario'})
+        router.push({name:'Iniciar sesion'})
       }, 3000);
     })
     .catch((err:AxiosError) => {

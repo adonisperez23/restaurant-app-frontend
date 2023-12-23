@@ -1,6 +1,6 @@
 <template>
     <v-container class="mt-16 pt-16 text-left">
-      <h2>Contactos:</h2>
+      <h2 class="px-5">Contactos:</h2>
       <v-row>
         <v-col >
           <div>
@@ -31,6 +31,7 @@
   h2{
     background-color: #f3d595;
     display: inline;
+    border-radius: 5px;
   }
   p{
     display: inline;

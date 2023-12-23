@@ -23,7 +23,7 @@
          <v-list class="text-start" density="compact">
            <v-list-item  to="/home" prepend-icon="mdi-home" title="Home"></v-list-item>
            <v-list-item  to="/menu" prepend-icon="mdi-list-box" title="Menu"></v-list-item>
-           <v-list-item :disabled="sesion.estadoLocalComercial" v-if="sesion.estadoSesion" to="/lista-pedidos" prepend-icon="mdi-cart-outline" title="Lista de pedidos">({{cantidadProductos}})</v-list-item>
+           <v-list-item :disabled="sesion.estadoLocalComercial" to="/lista-pedidos" prepend-icon="mdi-cart-outline" title="Lista de pedidos">({{cantidadProductos}})</v-list-item>
            <v-list-item  to="/about-us" prepend-icon="mdi-domain" title="Quienes somos"></v-list-item>
          </v-list>
        </v-menu>
@@ -34,7 +34,7 @@
           <v-btn prepend-icon="mdi-menu" to="/menu" variant="text">
             Menu
           </v-btn>
-          <v-btn :disabled="estadoLocalComercial" prepend-icon="mdi-cart-outline" to="/lista-pedidos" v-show="sesion.estadoSesion" variant="text" >
+          <v-btn :disabled="estadoLocalComercial" prepend-icon="mdi-cart-outline" to="/lista-pedidos" variant="text" >
             Pedidos ({{cantidadProductos}})
           </v-btn>
           <v-btn prepend-icon="mdi-domain" to="/about-us" variant="text" >
@@ -109,7 +109,7 @@
 
    <v-main>
      <v-sheet
-     v-if="estadoLocalComercial && sesion.estadoSesion"
+     v-if="estadoLocalComercial"
      color="yellow-darken-2"
      max-height="120"
       >
@@ -173,8 +173,8 @@ var controladorHorario = setInterval(()=>{
   let date = new Date()
   let horaActual = date.getHours()
   let diaActual = date.getDay()
-  let horaApertura = 11 //11 hora de apertura es a las 11 am
-  let horaCierre = 16   //16 hora de cierre es a las 4 pm es decir a las 16
+  let horaApertura = import.meta.env.VITE_HORA_APERTURA //11 hora de apertura es a las 11 am
+  let horaCierre = import.meta.env.VITE_HORA_CIERRE  //16 hora de cierre es a las 4 pm es decir a las 16
   let diaNolaborable = 0 // dia no laborable domingo; es el 0
 
   if(diaActual === diaNolaborable){

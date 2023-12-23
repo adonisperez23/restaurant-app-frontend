@@ -9,7 +9,7 @@
      @click="dialog = true"
      rounded="pill"
      >
-      Pedir
+      Agregar a pedido
     </v-btn>
 
     <v-dialog
@@ -20,11 +20,11 @@
         <v-sheet rounded color="yellow-darken-2">
           <v-card-title>{{menuOpcion}} ${{precio}}</v-card-title>
         </v-sheet>
-        <v-card-subtitle>Contornos disponibles a elegir: <strong>{{contornosDisponibles}}</strong></v-card-subtitle>
+        <v-card-subtitle v-if="categoria === 'Almuerzo'">Contornos disponibles a elegir: <strong>{{contornosDisponibles}}</strong></v-card-subtitle>
         <v-card-text class="py-0">
           <v-container>
             <v-row>
-              <v-col cols="6" class="pa-0">
+              <v-col v-if="categoria != 'Delivery'" cols="6" class="pa-0">
                 <h6>Indique la cantidad</h6>
                 <v-select
                 :items="[1,2,3,4,5]"
@@ -32,8 +32,8 @@
                 density="compact"
                 class="w-50"
                 ></v-select>
-                <v-sheet class="w-100 py-0">
-                  <h6>Especificacion extra</h6>
+                <v-sheet  v-if="categoria === 'Almuerzo'" class="w-100 py-0">
+                  <h6 >Especificacion extra</h6>
                   <v-text-field
                   density="compact"
                   class="mb-5"
@@ -42,7 +42,7 @@
                   ></v-text-field>
                 </v-sheet>
               </v-col>
-              <v-col>
+              <v-col  v-if="categoria === 'Almuerzo'">
                 <v-sheet rounded color="yellow-darken-2">
                   <h5>Nota:</h5>
                   <h6>Producto que no indique sus contornos a excepcion del Pabellon criollo y la Pasta a la bologna, seran servidos con arroz, ensalada cocida y tajadas</h6>
@@ -50,7 +50,7 @@
               </v-col>
             </v-row>
             <v-divider></v-divider>
-            <v-row>
+            <v-row v-if="categoria === 'Almuerzo'" >
               <v-col class="pa-1" v-for="(contorno, index) in contornos" :key="index" :cols="colsContornos">
                 <v-switch
                 v-model="descripcion"
@@ -63,7 +63,7 @@
               </v-col>
             </v-row>
             <v-divider></v-divider>
-            <v-row >
+            <v-row v-if="categoria != 'Delivery'" >
               <v-col class="pb-0">
                 <v-sheet rounded color="yellow-darken-2">
                   <h3>
@@ -125,12 +125,13 @@ const props = defineProps<{
   idProducto?:number,
   menuOpcion: string,
   precio:number,
+  categoria:string
 }>()
 
 const pedido:Pedido = reactive({
   id:props.idProducto,
   nombreProducto:props.menuOpcion,
-  precio:Number(props.precio),
+  precio:props.precio,
   cantidad:1,
   descripcion:''
 })
