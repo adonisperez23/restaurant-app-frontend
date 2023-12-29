@@ -127,7 +127,6 @@ import axios from 'axios'
 import type {AxiosError,AxiosResponse} from 'axios'
 import type {Producto} from "../types/interfaces"
 import BarraProgresoAviso from '../components/BarraProgresoAviso.vue'
-// import listaProductos from '../assets/productos.json'
 
 
 let listaProductos = ref<Producto[]>([]) // Variable que almacena todos los productos de la base de datos
@@ -170,7 +169,7 @@ function ObtenerMenu():void {
       })
       estaListaVacia(listaProductos.value)
       cargandoLista.value = false
-      console.log("lista filtrada", listaAlmuerzos,listaBebidas,listaRaciones)
+      // console.log("lista filtrada", listaAlmuerzos,listaBebidas,listaRaciones)
     }, 2000);
     // console.log("lista Productos", res.data.listaMenu)
   })

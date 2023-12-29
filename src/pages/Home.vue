@@ -35,7 +35,7 @@ import TheFooter from "../components/home/TheFooter.vue";
 
 <style scoped>
 .fondo-comida {
-  background-image: url("/fotos/fotocomida.jpg");
+  background-image: url("/fotos/fotocomida.webp");
   background-size: 1200px 560px;
   height: 560px;
   border: solid 5px orange;
@@ -49,7 +49,7 @@ import TheFooter from "../components/home/TheFooter.vue";
 }
 @media (max-width:400px) {
   .mobile{
-    background-image: url("/fotos/mobilefoto.jpg");
+    background-image: url("/fotos/mobilefoto.webp");
     background-size:400px 660px;
     height: 660px;
     border-radius: 5px;

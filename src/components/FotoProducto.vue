@@ -89,7 +89,7 @@ const propsAviso = reactive<Modal>({
 })
 
 function borrarImagen():void {
-  axios.delete(import.meta.env.VITE_API_BORRAR_FOTO+props.idFoto,{headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+  axios.delete(import.meta.env.VITE_API_BORRAR_FOTO+props.idFoto)
     .then((res:AxiosResponse)=>{
       // console.log("foto eliminada con exito",res)
       propsAviso.activarAviso = true

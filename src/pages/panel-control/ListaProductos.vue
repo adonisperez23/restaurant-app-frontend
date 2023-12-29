@@ -213,7 +213,7 @@ function obtenerProductos(){
 
 
 function eliminarProductoId(idProducto:number|undefined){
-  axios.delete(import.meta.env.VITE_API_ELIMINAR_PRODUCTO+idProducto,{headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+  axios.delete(import.meta.env.VITE_API_ELIMINAR_PRODUCTO+idProducto)
     .then((res:AxiosResponse)=>{
       propsAvisoEliminar.activarAviso = false
       propsAviso.activarAviso = true
@@ -245,7 +245,7 @@ function verificarProductoMostrarAviso(productoId:number|undefined){
     propsAvisoEliminar.idInfo = productoId
   })
   .catch((err:AxiosError) => {
-    // console.log("Error al verificar producto", err)
+    console.log("Error al verificar producto", err)
     propsAvisoEliminar.mensaje = "No se pudo verificar producto"
     propsAvisoEliminar.activarAviso = true
   })
