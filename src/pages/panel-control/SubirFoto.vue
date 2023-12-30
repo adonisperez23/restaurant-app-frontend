@@ -56,10 +56,10 @@ const cargandoFoto = ref<boolean>(false)
 function subirFoto():void {
   cargandoFoto.value = true
   let data = new FormData()
-  infoFoto.nombreFoto = imagen.value[0].name
   if(imagen.value !== undefined){
-      data.append('imagen',imagen.value[0])
-      data.append('data',JSON.stringify(infoFoto))
+    infoFoto.nombreFoto = imagen.value[0].name
+    data.append('imagen',imagen.value[0])
+    data.append('data',JSON.stringify(infoFoto))
       // console.log("data",data.values())
   }
   axios.post(import.meta.env.VITE_API_SUBIR_FOTO, data)
