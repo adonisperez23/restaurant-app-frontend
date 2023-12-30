@@ -56,7 +56,7 @@
             </th>
             Filtrar productos por:
             <select v-model="filtroSeleccionado">
-              <option v-for="categoria in ['Todos','Almuerzo','Bebida','Delivery','Racion']" >{{categoria}}</option>
+              <option v-for="categoria in ['Todos','Almuerzo','Bebida','Delivery','Racion','Contorno']" >{{categoria}}</option>
             </select>
           </tr>
         </thead>
@@ -174,6 +174,9 @@ const listaProductosFiltrada = computed(()=>{
       break;
     case 'Delivery':
       return listaProductos.value.filter(producto => producto.categoria === 'Delivery')
+      break;
+    case 'Contorno':
+      return listaProductos.value.filter(producto => producto.categoria === 'Contorno')
       break;
 
     default:
