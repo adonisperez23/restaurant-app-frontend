@@ -6,7 +6,7 @@
     <v-row>
       <v-col>
         <section class="text-justify">
-          <article >
+          <article>
             El “Restaurant Los Cinco Mejores Sabores C.A”, es una empresa que
             está ubicada en la avenida Orinoco en frente de las agencias unidas
             de automóviles (Chevrolet) con el Rif j-29798212-3, que se identifica
@@ -46,7 +46,7 @@
               pollo frito y pescado frito hasta las populares hallacas con su
               ensalada de gallina y el cuajao de cazón. Igualmente preparan
               distintas variedades de sopa, en especial, la sopa de mondongo,
-              sopa de gallina y  sopa de minestrones
+              sopa de gallina y sopa de minestrones
             </article>
           </section>
           <v-divider thickness="20"></v-divider>
@@ -72,7 +72,7 @@
           </section>
           <v-divider thickness="20"></v-divider>
           <section>
-            <h3 >Valores</h3>
+            <h3>Valores</h3>
             <article class="">
               Que el cliente disfrute de su estancia con sus familiares y amigos
               sin perder el espíritu que nos representa como venezolanos. Así
@@ -83,7 +83,7 @@
           </section>
           <v-divider thickness="20"></v-divider>
           <section>
-            <h3 >Eslogan</h3>
+            <h3>Eslogan</h3>
             <article class="">
               Sabor y Corazón, tu mejor opción.
             </article>
@@ -93,13 +93,8 @@
       <v-col cols="12" align="center">
         <section>
           <h3 class="px-5">Nuestro fabuloso equipo de trabajo</h3>
-          <v-img
-          class="borde-imagen"
-          src="/fotos/nuestroequipo.jpg"
-          width="180"
-          height="384"
-          aspect-ratio="1/1"
-          ></v-img>
+          <v-img class="borde-imagen" src="/fotos/nuestroequipo.jpg" width="180" height="384"
+            aspect-ratio="1/1"></v-img>
         </section>
       </v-col>
     </v-row>
@@ -111,14 +106,20 @@
 </script>
 
 <style lang="css" scoped>
-h1,h3{
+h1,
+h3 {
   background-color: #f3d595;
   display: inline;
   font-family: Steinfeld-demo;
-  text-transform: uppercase;
   border-radius: 5px;
 }
-section{
+
+h3 {
+  text-transform: uppercase;
+}
+
+
+section {
   margin-top: 5px;
 }
 </style>
