@@ -113,7 +113,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, SelectHTMLAttributes, watch } from 'vue'
+import { ref, reactive, computed, watch } from 'vue'
 import axios from 'axios'
 import Aviso from '../../components/Aviso.vue'
 import BarraProgresoAviso from '../../components/BarraProgresoAviso.vue'
