@@ -37,9 +37,9 @@
           <v-btn :disabled="estadoLocalComercial" prepend-icon="mdi-cart-outline" to="/lista-pedidos" variant="text" >
             Pedidos ({{cantidadProductos}})
           </v-btn>
-          <v-btn prepend-icon="mdi-domain" to="/about-us" variant="text" >
+          <!-- <v-btn prepend-icon="mdi-domain" to="/about-us" variant="text" >
             quienes somos
-          </v-btn>
+          </v-btn> -->
         </div>
 
       </template>

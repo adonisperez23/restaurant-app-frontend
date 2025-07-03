@@ -8,7 +8,7 @@
             <v-icon>mdi-whatsapp</v-icon>
             <p>
               Escribenos a nuestro numero de Whatsapp
-              <a href="https://api.whatsapp.com/send?phone=584129797775" target="_blank">04129797775</a>
+              <a href="https://api.whatsapp.com/send?phone=584129797775" target="_blank">+584129797775</a>
             </p>
             <br>
             <v-icon>mdi-instagram</v-icon>
