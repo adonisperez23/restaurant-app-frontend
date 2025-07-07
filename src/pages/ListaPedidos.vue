@@ -190,7 +190,7 @@ function enviarPedido():void {
 }
 
 function armarEnlancePedido(mensaje:string) {
-  window.open(`https://api.whatsapp.com/send?phone=584249683161&text=${mensaje}+`)
+  window.open(`https://api.whatsapp.com/send?phone=584129797775&text=${mensaje}+`)
 }
 
 function armarNuevoPedido():void {

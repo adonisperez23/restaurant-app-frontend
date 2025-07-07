@@ -43,7 +43,7 @@ function ObtenerFotos() {
     .then((res: AxiosResponse) => {
       listaFotos.value = res.data
       listaFotosFiltradas.value = listaFotos.value.filter(foto => foto.producto?.nombreProducto == props.nombreProducto)
-      console.log("fotos", res.data)
+      // console.log("fotos", res.data)
     })
     .catch((err: AxiosError) => {
       console.log("error foto", err)

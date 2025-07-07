@@ -24,7 +24,7 @@
            <v-list-item  to="/home" prepend-icon="mdi-home" title="Home"></v-list-item>
            <v-list-item  to="/menu" prepend-icon="mdi-list-box" title="Menu"></v-list-item>
            <v-list-item :disabled="sesion.estadoLocalComercial" to="/lista-pedidos" prepend-icon="mdi-cart-outline" title="Lista de pedidos">({{cantidadProductos}})</v-list-item>
-           <v-list-item  to="/about-us" prepend-icon="mdi-domain" title="Quienes somos"></v-list-item>
+           <!-- <v-list-item  to="/about-us" prepend-icon="mdi-domain" title="Quienes somos"></v-list-item> -->
          </v-list>
        </v-menu>
         <div v-if="!isMobile">
