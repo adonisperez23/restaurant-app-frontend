@@ -33,8 +33,13 @@
         </v-row>
         <v-row v-if="listaAlmuerzos.length > 0" justify="start">
             <v-container>
+                <SelectCategoria
+                    :categoria="categoriaSeleccionada"
+                    @change="iraCategoria"
+                />
+
                 <v-row justify="center">
-                    <h2 class="px-5">
+                    <h2 class="px-5" id="Almuerzos">
                         <v-icon start icon="mdi-pasta"></v-icon>
                         Almuerzos
                     </h2>
@@ -50,8 +55,12 @@
         </v-row>
         <v-row v-if="listaBebidas.length > 0">
             <v-container>
+                <SelectCategoria
+                    :categoria="categoriaSeleccionada"
+                    @change="iraCategoria"
+                />
                 <v-row justify="center">
-                    <h2 class="px-5">
+                    <h2 class="px-5" id="Bebidas">
                         <v-icon start icon="mdi-beer"></v-icon>
                         Bebidas
                     </h2>
@@ -67,8 +76,12 @@
         </v-row>
         <v-row v-if="listaRaciones.length > 0" justify="start">
             <v-container>
+                <SelectCategoria
+                    :categoria="categoriaSeleccionada"
+                    @change="iraCategoria"
+                />
                 <v-row justify="center">
-                    <h2 class="px-5">
+                    <h2 class="px-5" id="Extras">
                         <v-icon
                             start
                             icon="mdi-food-takeout-box-outline"
@@ -87,8 +100,12 @@
         </v-row>
         <v-row v-if="listaDelivery.length > 0">
             <v-container>
+                <SelectCategoria
+                    :categoria="categoriaSeleccionada"
+                    @change="iraCategoria"
+                />
                 <v-row justify="center">
-                    <h2 class="px-5">
+                    <h2 class="px-5" id="Zonas delivery">
                         <v-icon start icon="mdi-truck-delivery"></v-icon>
                         Zonas delivery
                     </h2>
@@ -112,6 +129,7 @@ import axios from "axios";
 import type { AxiosError, AxiosResponse } from "axios";
 import type { Producto } from "../types/interfaces";
 import BarraProgresoAviso from "../components/BarraProgresoAviso.vue";
+import SelectCategoria from "@/components/SelectCategoria.vue";
 
 let listaProductos = ref<Producto[]>([]); // Variable que almacena todos los productos de la base de datos
 const cargandoLista = ref<boolean>(true); //Variable que activa la BarraProgresoAviso cuando se hace la llamada a la api
@@ -122,6 +140,15 @@ const listaBebidas = reactive<Producto[]>([]); //Variable que almacena solo los 
 const listaRaciones = reactive<Producto[]>([]); //Variable que almacena solo los productos con categoria Racion
 const listaDelivery = reactive<Producto[]>([]); //Variable que almacena solo los productos con categoria Delivery
 // const listaFiltrada = listaMenu.value.filter(producto => producto.categoria === "Almuerzo" || producto.categoria === "Raciones")
+const categoriaSeleccionada = ref("Almuerzos");
+
+function iraCategoria(value: string) {
+    categoriaSeleccionada.value = value;
+    const element = document.getElementById(value);
+    if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+}
 
 ObtenerMenu();
 
