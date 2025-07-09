@@ -3,7 +3,7 @@
         <p class="mr-2">Filtrar:</p>
         <select
             @change="(e:Event)=>{
-            const selectElement = e.target as HTMLSelectElement;
+            selectElement = e.target as HTMLSelectElement;
             $emit('change',selectElement.value)
             selectElement.value = 'Seleccionar'
         }"
@@ -24,9 +24,13 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
+
 defineProps<{
     categoria: string;
 }>();
+
+const selectElement = ref<HTMLSelectElement>();
 
 const $emit = defineEmits<{
     change: (value: string) => void;
